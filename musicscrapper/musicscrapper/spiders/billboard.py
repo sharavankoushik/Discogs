@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-import scrapy
-from datetime import datetime,timedelta
 import json
 import re
+from datetime import datetime, timedelta
+
+import scrapy
+
 
 class BillboardSpider(scrapy.Spider):
     name = "billboard"
@@ -10,7 +12,7 @@ class BillboardSpider(scrapy.Spider):
     start_urls = ['https://www.billboard.com/']
     billboard_url = 'http://www.billboard.com/charts/billboard-200/'
     currDate = datetime.now()
-    startDate = datetime(2017, 9, 1)
+    startDate = datetime(1964, 1, 4)
     records = "records.json"
 
     def start_requests(self):
@@ -23,7 +25,7 @@ class BillboardSpider(scrapy.Spider):
         pass
 
     def generate_url(self, date):
-        url = self.billboard_url + date.strftime("%Y-%m-%d")
+        url = self.billboard_url + date.strfqtime("%Y-%m-%d")
         return url
 
     def parse(self, response):

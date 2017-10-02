@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from scrapy import Request
-from scrapy.spiders import BaseSpider
-from scrapy.selector import Selector
 import json
+
+from scrapy import Request
+from scrapy.selector import Selector
+from scrapy.spiders import BaseSpider
+
 
 class TestSpider(BaseSpider):
     name = "DiscogsDemo"
@@ -18,7 +20,7 @@ class TestSpider(BaseSpider):
     def parse_json(self):
         with open(self.billboardData,'r') as f:
             jsonload = json.loads(f.read())
-            for week_year_no in range(4,len(jsonload)):
+            for week_year_no in range(1,len(jsonload)):
                 records = jsonload[week_year_no].get('Records')
                 for i in range(0,len(records)):
                     Album_name = records[i].get('Albums')

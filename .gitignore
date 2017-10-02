@@ -21,3 +21,7 @@ __pycache__/
 
 # Windows
 Thumbs.db
+/MusicBlog/Music/migrations/
+MusicBlog/Music/migrations/0001_initial.py
+MusicBlog/Music/static/music/images/
+

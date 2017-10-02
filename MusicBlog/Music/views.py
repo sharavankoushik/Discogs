@@ -1,17 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse,Http404
-from .models import Albums,Songs
-from django.template import loader
-#serialize to Iterate over model column names and values in template
-from django.core import serializers
-from django.shortcuts import get_object_or_404
+from django.http import Http404
+# serialize to Iterate over model column names and values in template
+from django.shortcuts import get_object_or_404, render
+
+from .models import Album, Songs
 
 
 # Create your views here.
 def index(request):
     #to iterate over all columns in the model
-    Avail_albums =  Albums.objects.all()
-    meta_names = Albums._meta.fields
+    Avail_albums =  Album.objects.all()
+    meta_names = Album._meta.fields
     #to iterate over selected column names
     #Avail_albums = serializers.serialize( "python", Album.objects.all(),fields = ('album_title','album_artist))
     context = {
@@ -23,7 +21,7 @@ def index(request):
 #details of particular album when selected
 def details(request,album_id):
     try:
-        returned_album = Albums.objects.get(pk=album_id)
+        returned_album = Album.objects.get(pk=album_id)
         song_columns = Songs._meta.fields
         title = Songs._meta.get_field('song_title')
         artist =Songs._meta.get_field('song_artist')
@@ -36,12 +34,12 @@ def details(request,album_id):
         'song_columns':song_columns,
         'indi_cols':indi_cols
         }
-    except Albums.DoesNotExist:
+    except Album.DoesNotExist:
         raise Http404("Album No longer exists")
     return render(request,'music\Details.html',context)
 
 def favorite(request,album_id):
-    album = get_object_or_404(Albums, pk=album_id)
+    album = get_object_or_404(Album, pk=album_id)
     try:
         selected_song = album.songs_set.get(pk = request.POST['song'])
     except (KeyError, Songs.DoesNotExist):
