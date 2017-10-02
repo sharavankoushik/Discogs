@@ -7,18 +7,9 @@
 
 from scrapy_djangoitem import DjangoItem
 import scrapy
-from Music.models import Albums,Songs,Office
-
+from Music.models import Albums,Songs
 class MusicscrapperItem(DjangoItem):
-    django_model = Office
+    django_model = Albums
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
-
-class GoogleSearchItem(DjangoItem):
-    name =  scrapy.Field()
-    region = scrapy.Field()
-    url = scrapy.Field()
-    html = scrapy.Field()
-    query = scrapy.Field()
-    crawled = scrapy.Field()

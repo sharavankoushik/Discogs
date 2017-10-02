@@ -15,11 +15,3 @@ class Songs(models.Model):
     song_genre = models.CharField(max_length=250)
     def __str__(self):
         return self.song_title + '-' + self.song_album + '-' + self.song_artist
-
-class Office(models.Model):
-    city = models.CharField(max_length=100)
-    province = models.CharField(max_length=100)
-    address = models.CharField(max_length=100)
-    name = models.CharField(max_length=100)
-    def __str__(self):
-        return self.city + ' - '+ self.province
