@@ -25,7 +25,7 @@ SECRET_KEY = '*l_)+97#^zqd&477oc8n-aky37g#hi0lcb1@g_^zjp*fww_qqh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','0.0.0.0']
 
 
 # Application definition
@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'MusicBlog.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'musicblog',
-        'USER': 'test',
-        'PASSWORD': 'test',
+        'NAME': 'musicdb',
+        'USER': 'postgres',
+        'PASSWORD': '123',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
