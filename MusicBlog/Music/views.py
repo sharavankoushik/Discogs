@@ -16,7 +16,7 @@ def index(request):
         'avail_albums' : Avail_albums,
         'columns_name' : meta_names
     }
-    return render(request,'music/index.html',context)
+    return render(request,'Music/index.html',context)
 
 #details of particular album when selected
 def details(request,album_id):
@@ -36,18 +36,18 @@ def details(request,album_id):
         }
     except Album.DoesNotExist:
         raise Http404("Album No longer exists")
-    return render(request,'music\Details.html',context)
+    return render(request,'Music\Details.html',context)
 
 def favorite(request,album_id):
     album = get_object_or_404(Album, pk=album_id)
     try:
         selected_song = album.songs_set.get(pk = request.POST['song'])
     except (KeyError, Songs.DoesNotExist):
-        return render(request,'music\Details.html',
+        return render(request,'Music\Details.html',
                         {'album':album,
                         'error_message':"Please select a valid option (Song)"}
                         )
     else:
         selected_song.is_favorite = True
         selected_song.save()
-        return render(request, 'music\Details.html', {'album':album})
+        return render(request, 'Music\Details.html', {'album':album})

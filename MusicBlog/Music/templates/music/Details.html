@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ album.album_name }}</title>
+  <meta charset="UTF-8">
+  <title>Music Albums</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <img src="{{ album.album_logo }}" height="220px" width="220px">
+  <h1>{{ album.album_name }}</h1>
+  <h2>{{ album.album_artist }}</h2>
+  {#{% if error_message %}#}
+  {#<p><strong>Error exists</strong></p>#}
+  {#{% endif %}#}
+
+  <form action="{% url 'Music:favorite' album.id%}" method="post">
+    {% csrf_token %}
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-inverse"  style="width: 100vw;">
+          <tr>
+            {#list all the existing columns or required columsn in the model Album and display them in a table header#}
+            {%  for column in indi_cols%}
+            {% if column.name %}
+            <th style="text-align : center;">{{ column.verbose_name }}</th>
+            {% endif %}
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {# Loop through the existing records/Songs in Album  #}
+          {% for song in album.songs_set.all %}
+          <tr style="text-align: center">
+            <td>
+              <input style="float: left;" type="radio" id="song{{ forloop.counter }}" name="song" value={{ song.id }}/>
+              {# <label for ="song{{ forloop.counter }}"> #} &nbsp;
+                {{ song.song_title }}
+                <td>{{ song.song_artist }}</td>
+                <td>{{ song.song_length }}</td>
+                <td>{{ song.song_type }}</td>
+                <td>{{ song.song_genre }}
+                {% if song.is_favorite %}
+                <img style="float: right; vertical-align: middle" src="http://imgur.com/A6lqZvX.png" >
+                {% endif %}</td>
+              {#</label>#}<br>
+            </td>
+          </tr>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary">Favorite</button>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</body>
+</html>
