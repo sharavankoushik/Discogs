@@ -7,9 +7,12 @@
 
 from scrapy_djangoitem import DjangoItem
 import scrapy
-from Music.models import Albums,Songs
-class MusicscrapperItem(DjangoItem):
-    django_model = Albums
+from Music.models import Album,Songs
+
+
+class AlbumItemScraper(DjangoItem):
+    DjangoItem.django_model = Album
+    #DjangoItem.django_model = Songs
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    # name = scrapy.Field()cls
     pass

@@ -1,0 +1,40 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Albums</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" type= "text/css" href="{% static '/music/css/style.css' %}"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<table class="table">
+    <thead class="thead-inverse">
+    <tr>
+        {#list all the existing columns or required columsn in the model Album and display them in a table header#}
+        {%  for column in columns_name%}
+            <th>{{ column.verbose_name }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {# Loop through the existing records/Albums and generate a HTMl link for each album #}
+    {% for album in avail_albums %}
+        <tr>
+            <td>{{ album.id }}</td>
+            <td><a href="{% url 'Music:details' album.id %}">{{ album.album_name }} </a></td>
+            <td>{{ album.album_artist }}</td>
+            <td>{{ album.album_count }}</td>
+            <td><img src="{{ album.album_logo }}"  height="42" width="42" ></td>
+            <td>{{ album.album_genre }}</td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

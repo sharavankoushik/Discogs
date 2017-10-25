@@ -1,0 +1,7 @@
+Vary: Accept-Encoding
+Strict-Transport-Security: max-age=16000000
+Date: Tue, 03 Oct 2017 05:15:54 GMT
+Content-Type: text/plain
+Server: nginx
+Last-Modified: Mon, 17 Oct 2016 22:40:19 GMT
+Content-Encoding: gzip

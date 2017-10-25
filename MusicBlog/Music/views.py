@@ -1,7 +1,7 @@
 from django.http import Http404
 # serialize to Iterate over model column names and values in template
 from django.shortcuts import get_object_or_404, render
-
+from django.core import  serializers
 from .models import Album, Songs
 
 
@@ -26,9 +26,11 @@ def details(request,album_id):
         title = Songs._meta.get_field('song_title')
         artist =Songs._meta.get_field('song_artist')
         length = Songs._meta.get_field('song_length')
+        genre = Songs._meta.get_field('song_genre')
         stype =Songs._meta.get_field('song_type')
-        indi_cols = [title,artist,length,stype]
-        #serializers.serialize( "python", Songs.objects.all(),fields = ('song_title','song_artist','song_length'))
+        indi_cols = [title,artist,length,genre,stype]
+        #serials = serializers.serialize( "python", Songs.objects.all(),fields = ('song_title','song_artist',
+        # 'song_length'))
         context = {
         'album': returned_album,
         'song_columns':song_columns,

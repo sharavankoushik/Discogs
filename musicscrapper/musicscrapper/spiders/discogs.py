@@ -8,7 +8,7 @@ import json
 class TestSpider(BaseSpider):
     name = "test"
     allowed_domains = ["https://www.discogs.com"]
-    form_data = {'title': "Rainbow", 'artist': "Kesha", 'type': "master"}
+    form_data = {'title': "Witness", 'artist': "Katy Perry", 'type': "master"}
     start_urls = ['https://www.discogs.com/search/?type=' + form_data.get('type') + '&title=' + form_data.get(
         'title') + '&artist=' + form_data.get('artist')]
     records = "Album_info.json"

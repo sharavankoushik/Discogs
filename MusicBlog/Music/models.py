@@ -11,6 +11,7 @@ class Album(models.Model):
     album_songscount= models.IntegerField(default=1)
     album_logo = models.CharField(max_length=1000)
     album_genre = models.CharField(max_length=250)
+    album_repeat_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.album_name + '-'+ self.album_artist
@@ -21,9 +22,13 @@ class Songs(models.Model):
     song_title = models.CharField(max_length=250)
     song_artist = models.CharField(max_length=250)
     song_genre = models.CharField(max_length=250)
-    song_length = models.TimeField()
+    song_length = models.CharField(max_length=2)
     song_type = models.CharField(max_length=10)
     is_favorite = models.BooleanField(default=False)
 
+    class META:
+        verbose_name_plural = "Songs"
+        verbose_name = "Songs"
+
     def __str__(self):
-        return self.song_title + '-' + self.song_album + '-' + self.song_artist
+        return self.song_title + '-'  + '-' + self.song_artist

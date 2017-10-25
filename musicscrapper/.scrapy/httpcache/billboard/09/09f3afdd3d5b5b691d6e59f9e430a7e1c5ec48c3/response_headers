@@ -1,0 +1,15 @@
+X-Nx-Host: www.billboard.com
+X-Varnish: 2457124060
+Server: cloudflare-nginx
+Vary: Accept-Encoding
+Content-Encoding: gzip
+X-Cache-Hits: MISS
+Content-Type: text/html
+X-Debug-Log: Removed cookies
+Cf-Cache-Status: EXPIRED
+Set-Cookie: PGMINFO=cc:us-ip:23.116.237.186; Max-Age=3600; Path=/; Domain=.billboard.com
+X-Debug-Cookies: 
+Date: Tue, 03 Oct 2017 00:16:37 GMT
+Cache-Control: cache-control, max-age=0, public, s-maxage=600
+Cf-Ray: 3a7bb6a584396ca6-SJC
+Via: 1.1 varnish
