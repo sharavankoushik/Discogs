@@ -9,3 +9,5 @@ scrapy-djangoitem==1.1.1
 Werkzeug==0.12.2
 gunicorn
 psycopg2
+django-bootstrap3
+whitenoise
