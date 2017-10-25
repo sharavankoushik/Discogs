@@ -26,7 +26,7 @@ def details(request,album_id):
         title = Songs._meta.get_field('song_title')
         artist =Songs._meta.get_field('song_artist')
         length = Songs._meta.get_field('song_length')
-        stype =Songs._meta.get_field('song_type')
+        stype = Songs._meta.get_field('song_type')
         indi_cols = [title,artist,length,stype]
         #serializers.serialize( "python", Songs.objects.all(),fields = ('song_title','song_artist','song_length'))
         context = {
@@ -36,18 +36,18 @@ def details(request,album_id):
         }
     except Album.DoesNotExist:
         raise Http404("Album No longer exists")
-    return render(request,'music\Details.html',context)
+    return render(request,'music/Details.html',context)
 
 def favorite(request,album_id):
     album = get_object_or_404(Album, pk=album_id)
     try:
         selected_song = album.songs_set.get(pk = request.POST['song'])
     except (KeyError, Songs.DoesNotExist):
-        return render(request,'music\Details.html',
+        return render(request,'music/Details.html',
                         {'album':album,
                         'error_message':"Please select a valid option (Song)"}
                         )
     else:
         selected_song.is_favorite = True
         selected_song.save()
-        return render(request, 'music\Details.html', {'album':album})
+        return render(request, 'music/Details.html', {'album':album})

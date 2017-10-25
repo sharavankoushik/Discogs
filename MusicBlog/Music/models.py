@@ -26,4 +26,4 @@ class Songs(models.Model):
     is_favorite = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.song_title + '-' + self.song_album + '-' + self.song_artist
+        return self.song_title + '-' + self.song_artist
